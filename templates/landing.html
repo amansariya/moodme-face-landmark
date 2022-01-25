@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MoodMe</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div style="width: 50%; margin: 0 auto;" class = "container">
+    <div class = "starter-template">
+        <h1>MoodMe - Face Landmark Detection</h1>
+        <p>Tech Stack: Python, Flask, OpenCV.</p> 
+        <p>Hosted on Heroku.</p>
+        <p>By Aman Sariya - <a href="https://www.linkedin.com/in/amansariya/" target="blank">LinkedIn</a> | <a href="https://github.com/amansariya" target="blank">Github</a></p><br>
+        <h5>Upload your file below.</h5>
+    </div>
+</div>
+
+<header class="navbar">
+    <form action="/result" method="post" enctype="multipart/form-data" >
+        <div style="width: 48%; margin: 0 auto;">
+            <input type="file" name="file"><br><br>
+        </div>
+        <div align="center">
+            <input type="submit" value="Detect Face Landmarks" class="btn btn-primary">
+        </div>
+    </form>
+</header>
+
+<div class="text-center">
+    {% if init %}
+        {% if output %}
+            {% if faceDetected %}
+                <div class="alert alert-success" style="margin-top:2px;">
+                    Detected face landmarks!
+                </div>
+                <div>
+                    <img src={{ url_for('static', filename='saved.png', code = 307) }}>
+                </div>
+            {% else %}
+                <div class="alert alert-danger" style="margin-top:2px;">
+                    <strong>Error:</strong> No face detected!
+                </div>
+            {% endif %}  
+        {% else %}
+            <div class="alert alert-danger" style="margin-top:18px;">
+                <strong>Error:</strong> Upload an image!
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>
