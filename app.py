@@ -33,6 +33,7 @@ def start_page():
 @app.route('/result', methods=['GET', 'POST'])
 def upload_file():
 	output = False
+	faceDetected = False
 	if request.method == 'POST':
 		if 'file' not in request.files:
 			flash('No file part.')
